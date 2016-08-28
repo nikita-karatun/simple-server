@@ -1,4 +1,7 @@
-package ru.karatun.common.collection;
+package ru.karatun.simpleserver.concurrent;
+
+import ru.karatun.simpleserver.collection.Stake;
+import ru.karatun.simpleserver.collection.StakeImpl;
 
 /**
  * Created by Nikita Karatun

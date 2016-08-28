@@ -1,4 +1,4 @@
-package ru.karatun.common.server;
+package ru.karatun.simpleserver.server;
 
 import java.io.*;
 import java.net.URLConnection;

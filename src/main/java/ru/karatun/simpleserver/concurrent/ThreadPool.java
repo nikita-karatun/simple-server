@@ -1,7 +1,4 @@
-package ru.karatun.common.concurrent;
-
-import ru.karatun.common.collection.ConcurrentStake;
-import ru.karatun.common.collection.ConcurrentStakeImpl;
+package ru.karatun.simpleserver.concurrent;
 
 import java.util.concurrent.Executor;
 

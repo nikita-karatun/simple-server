@@ -1,11 +1,10 @@
-package ru.karatun.common.server;
+package ru.karatun.simpleserver.server;
 
-import ru.karatun.common.concurrent.ThreadPool;
+import ru.karatun.simpleserver.concurrent.ThreadPool;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URLConnection;
 
 /**
  * Created by Nikita Karatun

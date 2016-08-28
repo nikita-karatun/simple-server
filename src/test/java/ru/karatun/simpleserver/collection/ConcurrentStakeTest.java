@@ -1,10 +1,11 @@
-package ru.karatun.common.collection;
+package ru.karatun.simpleserver.collection;
 
 import org.junit.Test;
+import ru.karatun.simpleserver.concurrent.ConcurrentStake;
+import ru.karatun.simpleserver.concurrent.ConcurrentStakeImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadFactory;
 
 import static org.junit.Assert.*;
 

@@ -1,6 +1,4 @@
-package ru.karatun.common.collection;
-
-import java.util.Arrays;
+package ru.karatun.simpleserver.collection;
 
 /**
  * Created by Nikita Karatun

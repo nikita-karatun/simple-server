@@ -1,4 +1,4 @@
-package ru.karatun.common.collection;
+package ru.karatun.simpleserver.collection;
 
 import org.junit.Test;
 
