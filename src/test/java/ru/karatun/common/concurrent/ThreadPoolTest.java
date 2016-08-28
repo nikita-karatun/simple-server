@@ -2,27 +2,22 @@ package ru.karatun.common.concurrent;
 
 import org.junit.Test;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import static org.junit.Assert.*;
 
 /**
  * Created by Nikita Karatun
  * 28.08.16.
  */
-public class ThreadPoolWorkerTest {
+public class ThreadPoolTest {
 
     @Test
     public void execute() throws Exception {
         Counter counter = new Counter();
-        ThreadPoolWorker threadPoolWorker = new ThreadPoolWorker();
+        ThreadPool threadPool = new ThreadPool(10);
         for (int i = 0; i < 20; i++) {
-            threadPoolWorker.execute(counter::add);
+            threadPool.execute(counter::add);
         }
-        threadPoolWorker.stop();
-        threadPoolWorker.join();
-
+        Thread.sleep(10000);
         assertEquals(20, counter.get());
     }
 

@@ -13,4 +13,5 @@ public interface ConcurrentStake<E> {
     boolean isFull();
 
     boolean isEmpty();
+
 }

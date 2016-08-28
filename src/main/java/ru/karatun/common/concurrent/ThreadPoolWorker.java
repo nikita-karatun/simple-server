@@ -10,7 +10,7 @@ import java.util.concurrent.Executor;
  * Created by Nikita Karatun
  * 28.08.16.
  */
-class ThreadPoolWorker implements Executor {
+public class ThreadPoolWorker implements Executor {
 
     private final ConcurrentStake<Runnable> runnableStake = new ConcurrentStakeImpl<>(1);
     private final Thread innerThread;
@@ -24,6 +24,7 @@ class ThreadPoolWorker implements Executor {
                     while (!stopped) {
                         Runnable runnable = runnableStake.poll();
                         runnable.run();
+                        runnableCompletedCallback();
                     }
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -31,6 +32,9 @@ class ThreadPoolWorker implements Executor {
             }
         };
         innerThread.start();
+    }
+
+    public void runnableCompletedCallback() {
     }
 
     @Override
