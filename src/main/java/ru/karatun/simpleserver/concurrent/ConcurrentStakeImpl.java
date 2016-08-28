@@ -1,7 +1,7 @@
 package ru.karatun.simpleserver.concurrent;
 
-import ru.karatun.simpleserver.collection.Stake;
-import ru.karatun.simpleserver.collection.StakeImpl;
+import ru.karatun.simpleserver.collection.Stack;
+import ru.karatun.simpleserver.collection.StackImpl;
 
 /**
  * Created by Nikita Karatun
@@ -9,14 +9,14 @@ import ru.karatun.simpleserver.collection.StakeImpl;
  */
 public class ConcurrentStakeImpl<E> implements ConcurrentStake<E> {
 
-    private final Stake<E> threadUnsafeStake;
+    private final Stack<E> threadUnsafeStack;
 
     public ConcurrentStakeImpl() {
-        threadUnsafeStake = new StakeImpl<E>();
+        threadUnsafeStack = new StackImpl<E>();
     }
 
     public ConcurrentStakeImpl(int size) {
-        threadUnsafeStake = new StakeImpl<E>(size);
+        threadUnsafeStack = new StackImpl<E>(size);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ConcurrentStakeImpl<E> implements ConcurrentStake<E> {
         while (isFull()) {
             wait();
         }
-        threadUnsafeStake.add(element);
+        threadUnsafeStack.add(element);
         notifyAll();
     }
 
@@ -33,19 +33,19 @@ public class ConcurrentStakeImpl<E> implements ConcurrentStake<E> {
         while (isEmpty()) {
             wait();
         }
-        E element = threadUnsafeStake.poll();
+        E element = threadUnsafeStack.poll();
         notifyAll();
         return element;
     }
 
     @Override
     public synchronized boolean isFull() {
-        return threadUnsafeStake.isFull();
+        return threadUnsafeStack.isFull();
     }
 
     @Override
     public synchronized boolean isEmpty() {
-        return threadUnsafeStake.isEmpty();
+        return threadUnsafeStack.isEmpty();
     }
 
 }

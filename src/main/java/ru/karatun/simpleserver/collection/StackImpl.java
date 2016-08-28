@@ -4,7 +4,7 @@ package ru.karatun.simpleserver.collection;
  * Created by Nikita Karatun
  * 28.08.16.
  */
-public class StakeImpl<E> implements Stake<E> {
+public class StackImpl<E> implements Stack<E> {
 
     private static final int DEFAULT_SIZE = 10;
 
@@ -12,11 +12,11 @@ public class StakeImpl<E> implements Stake<E> {
 
     private final Object[] array;
 
-    public StakeImpl() {
+    public StackImpl() {
         this(DEFAULT_SIZE);
     }
 
-    public StakeImpl(int size) {
+    public StackImpl(int size) {
         this.array = new Object[size];
     }
 

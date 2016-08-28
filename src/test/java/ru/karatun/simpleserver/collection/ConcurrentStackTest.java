@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
  * Created by Nikita Karatun
  * 28.08.16.
  */
-public class ConcurrentStakeTest {
+public class ConcurrentStackTest {
 
     /**
      * One thread adds 50 items to stake with size of 10, 5 other threads meanwhile pools 10 items each.
-     * Stake must be empty as a result.
+     * Stack must be empty as a result.
      */
     @Test
     public void add() throws Exception {

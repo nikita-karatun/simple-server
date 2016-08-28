@@ -10,33 +10,33 @@ import static org.junit.Assert.assertNull;
  * Created by Nikita Karatun
  * 28.08.16.
  */
-public class StakeImplTest {
+public class StackImplTest {
 
     @Test
     public void add() throws Exception {
-        Stake<Integer> stake = new StakeImpl<>();
-        fillStake(stake);
-        assertEquals(true, stake.isFull());
+        Stack<Integer> stack = new StackImpl<>();
+        fillStake(stack);
+        assertEquals(true, stack.isFull());
         for (int i = 0; i < 10; i++) {
-            Integer element = stake.poll();
+            Integer element = stack.poll();
             assertNotNull(element);
         }
-        Integer element = stake.poll();
+        Integer element = stack.poll();
         assertNull(element);
-        assertEquals(true, stake.isEmpty());
+        assertEquals(true, stack.isEmpty());
     }
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void addMoreThanStakeSizeIs() throws Exception {
-        Stake<Integer> stake = new StakeImpl<>();
+        Stack<Integer> stack = new StackImpl<>();
         for (int i = 0; i < 11; i++) {
-            stake.add(i);
+            stack.add(i);
         }
     }
 
-    private void fillStake(Stake<Integer> stake) {
+    private void fillStake(Stack<Integer> stack) {
         for (int i = 0; i < 10; i++) {
-            stake.add(i);
+            stack.add(i);
         }
     }
 
