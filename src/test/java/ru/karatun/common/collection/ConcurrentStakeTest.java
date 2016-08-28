@@ -20,13 +20,17 @@ public class ConcurrentStakeTest {
      */
     @Test
     public void add() throws Exception {
-        Stake<Integer> stake = new ConcurrentStake<>();
+        ConcurrentStake<Integer> stake = new ConcurrentStakeImpl<>();
 
         Thread addingThread = new Thread() {
             @Override
             public void run() {
                 for (int i = 0; i < 50; i++) {
-                    stake.add(i);
+                    try {
+                        stake.add(i);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         };
@@ -41,7 +45,11 @@ public class ConcurrentStakeTest {
                 @Override
                 public void run() {
                     for (int j = 0; j < 10; j++) {
-                        stake.poll();
+                        try {
+                            stake.poll();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });
