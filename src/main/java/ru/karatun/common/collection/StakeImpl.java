@@ -42,4 +42,14 @@ public class StakeImpl<E> implements Stake<E> {
         return element;
     }
 
+    @Override
+    public boolean isFull() {
+        return currentSize == array.length;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return currentSize == 0;
+    }
+
 }

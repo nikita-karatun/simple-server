@@ -10,4 +10,8 @@ public interface Stake<E> {
 
     E poll();
 
+    boolean isFull();
+
+    boolean isEmpty();
+
 }
