@@ -8,13 +8,13 @@ import java.util.concurrent.Executor;
  */
 public class ThreadPool implements Executor {
 
-    private final ConcurrentStake<CustomThreadPoolWorker> idleWorkerStake;
+    private final ConcurrentStack<CustomThreadPoolWorker> idleWorkerStack;
 
     private class CustomThreadPoolWorker extends ThreadPoolWorker {
         @Override
         public void runnableCompletedCallback() {
             try {
-                idleWorkerStake.add(this);
+                idleWorkerStack.add(this);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -22,10 +22,10 @@ public class ThreadPool implements Executor {
     }
 
     public ThreadPool(int size) {
-        idleWorkerStake = new ConcurrentStakeImpl<>(size);
+        idleWorkerStack = new ConcurrentStackImpl<>(size);
         for (int i = 0; i < size; i++) {
             try {
-                idleWorkerStake.add(new CustomThreadPoolWorker());
+                idleWorkerStack.add(new CustomThreadPoolWorker());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -35,7 +35,7 @@ public class ThreadPool implements Executor {
     @Override
     public void execute(Runnable command) {
         try {
-            ThreadPoolWorker threadPoolWorker = idleWorkerStake.poll();
+            ThreadPoolWorker threadPoolWorker = idleWorkerStack.poll();
             threadPoolWorker.execute(command);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

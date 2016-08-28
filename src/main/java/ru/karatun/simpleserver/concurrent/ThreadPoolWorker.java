@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
  */
 public class ThreadPoolWorker implements Executor {
 
-    private final ConcurrentStake<Runnable> runnableStake = new ConcurrentStakeImpl<>(1);
+    private final ConcurrentStack<Runnable> runnableStack = new ConcurrentStackImpl<>(1);
     private final Thread innerThread;
     private volatile boolean stopped = false;
 
@@ -18,7 +18,7 @@ public class ThreadPoolWorker implements Executor {
             public void run() {
                 try {
                     while (!stopped) {
-                        Runnable runnable = runnableStake.poll();
+                        Runnable runnable = runnableStack.poll();
                         runnable.run();
                         runnableCompletedCallback();
                     }
@@ -36,7 +36,7 @@ public class ThreadPoolWorker implements Executor {
     @Override
     public void execute(Runnable command) {
         try {
-            runnableStake.add(command);
+            runnableStack.add(command);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

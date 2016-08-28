@@ -15,7 +15,7 @@ public class StackImplTest {
     @Test
     public void add() throws Exception {
         Stack<Integer> stack = new StackImpl<>();
-        fillStake(stack);
+        fillStack(stack);
         assertEquals(true, stack.isFull());
         for (int i = 0; i < 10; i++) {
             Integer element = stack.poll();
@@ -27,14 +27,14 @@ public class StackImplTest {
     }
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void addMoreThanStakeSizeIs() throws Exception {
+    public void addMoreThanStackSizeIs() throws Exception {
         Stack<Integer> stack = new StackImpl<>();
         for (int i = 0; i < 11; i++) {
             stack.add(i);
         }
     }
 
-    private void fillStake(Stack<Integer> stack) {
+    private void fillStack(Stack<Integer> stack) {
         for (int i = 0; i < 10; i++) {
             stack.add(i);
         }

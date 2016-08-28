@@ -7,15 +7,15 @@ import ru.karatun.simpleserver.collection.StackImpl;
  * Created by Nikita Karatun
  * 28.08.16.
  */
-public class ConcurrentStakeImpl<E> implements ConcurrentStake<E> {
+public class ConcurrentStackImpl<E> implements ConcurrentStack<E> {
 
     private final Stack<E> threadUnsafeStack;
 
-    public ConcurrentStakeImpl() {
+    public ConcurrentStackImpl() {
         threadUnsafeStack = new StackImpl<E>();
     }
 
-    public ConcurrentStakeImpl(int size) {
+    public ConcurrentStackImpl(int size) {
         threadUnsafeStack = new StackImpl<E>(size);
     }
 
